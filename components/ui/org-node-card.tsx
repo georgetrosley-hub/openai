@@ -54,25 +54,25 @@ export function OrgNodeCard({ node, index = 0, className }: OrgNodeCardProps) {
         scale: { duration: 2.2, repeat: Infinity, ease: "easeInOut" },
       }}
       className={cn(
-        "group rounded-lg border px-4 py-3 backdrop-blur-sm transition-colors duration-300",
+        "group h-full rounded-2xl border px-5 py-4 backdrop-blur-sm transition-colors duration-300",
         statusStyles[node.status],
         className
       )}
     >
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex min-h-[152px] items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
           <h3
             className={cn(
-              "text-[13px] font-medium",
+              "text-[14px] font-semibold leading-snug",
               isActive ? "text-text-primary" : "text-text-secondary"
             )}
           >
             {node.name}
           </h3>
-          <p className="mt-1 text-[11px] leading-relaxed text-text-muted">
+          <p className="mt-1.5 text-[12px] leading-relaxed text-text-muted">
             {node.useCase}
           </p>
-          <div className="mt-2 flex items-center gap-2">
+          <div className="mt-3 flex items-center gap-2">
             <span
               className={cn(
                 "h-1.5 w-1.5 rounded-full",
@@ -91,10 +91,10 @@ export function OrgNodeCard({ node, index = 0, className }: OrgNodeCardProps) {
             {node.recommendedNextStep}
           </p>
         </div>
-        <div className="flex shrink-0 flex-col items-end">
+        <div className="flex shrink-0 flex-col items-end text-right">
           <span
             className={cn(
-              "text-[12px] font-semibold tabular-nums",
+              "text-[13px] font-semibold tabular-nums",
               isActive ? "text-claude-coral" : "text-text-muted"
             )}
           >

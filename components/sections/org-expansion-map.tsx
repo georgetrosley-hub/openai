@@ -49,17 +49,17 @@ const defaultUseCases: Record<(typeof departmentOrder)[number], string> = {
 };
 
 const nodePositions: Record<(typeof departmentOrder)[number], NodePosition> = {
-  Engineering: { x: 18, y: 18 },
-  "Platform Engineering": { x: 50, y: 10 },
-  Security: { x: 82, y: 18 },
-  IT: { x: 16, y: 44 },
-  Finance: { x: 34, y: 60 },
-  Legal: { x: 50, y: 72 },
-  Operations: { x: 66, y: 60 },
-  "Customer Support": { x: 84, y: 44 },
-  Product: { x: 26, y: 84 },
-  "Data / AI": { x: 74, y: 84 },
-  "Executive Leadership": { x: 50, y: 42 },
+  Engineering: { x: 15, y: 16 },
+  "Platform Engineering": { x: 39, y: 9 },
+  Security: { x: 72, y: 16 },
+  IT: { x: 13, y: 42 },
+  Finance: { x: 31, y: 61 },
+  Legal: { x: 50, y: 74 },
+  Operations: { x: 69, y: 61 },
+  "Customer Support": { x: 87, y: 42 },
+  Product: { x: 25, y: 88 },
+  "Data / AI": { x: 75, y: 88 },
+  "Executive Leadership": { x: 50, y: 40 },
 };
 
 const connections: Array<[(typeof departmentOrder)[number], (typeof departmentOrder)[number]]> = [
@@ -149,10 +149,10 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
         )}
       </div>
 
-      <div className="relative overflow-hidden rounded-xl border border-claude-coral/10 bg-gradient-to-br from-surface-elevated/85 via-surface/75 to-surface-elevated/85 p-6">
+      <div className="relative overflow-x-auto overflow-y-hidden rounded-[28px] border border-claude-coral/10 bg-gradient-to-br from-surface-elevated/85 via-surface/75 to-surface-elevated/85 px-6 py-8">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(218,119,86,0.08),transparent_45%),radial-gradient(circle_at_18%_18%,rgba(218,119,86,0.04),transparent_35%),radial-gradient(circle_at_86%_84%,rgba(218,119,86,0.03),transparent_30%)]" />
 
-        <div className="relative h-[760px] min-w-[940px]">
+        <div className="relative mx-auto h-[920px] min-w-[1240px]">
           <svg
             className="pointer-events-none absolute inset-0 h-full w-full"
             viewBox="0 0 100 100"
@@ -172,11 +172,12 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
               const end = nodePositions[to];
               const isActivated =
                 activeNodes.some((n) => n.name === from) || activeNodes.some((n) => n.name === to);
+              const controlY = Math.min(start.y, end.y) + Math.abs(start.y - end.y) * 0.35 - 8;
 
               return (
                 <motion.path
                   key={`${from}-${to}`}
-                  d={`M ${start.x} ${start.y} Q ${(start.x + end.x) / 2} ${(start.y + end.y) / 2 - 7} ${end.x} ${end.y}`}
+                  d={`M ${start.x} ${start.y} Q ${(start.x + end.x) / 2} ${controlY} ${end.x} ${end.y}`}
                   fill="none"
                   stroke="url(#org-link-gradient)"
                   strokeWidth={isActivated ? 0.48 : 0.25}
@@ -205,7 +206,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
             return (
               <motion.div
                 key={node.id}
-                className="absolute w-[248px] -translate-x-1/2 -translate-y-1/2 group"
+                className="group absolute w-[288px] -translate-x-1/2 -translate-y-1/2"
                 style={{ left: `${position.x}%`, top: `${position.y}%` }}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
