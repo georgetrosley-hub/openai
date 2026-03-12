@@ -3,9 +3,11 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RefreshCw } from "lucide-react";
+import { useApiKey } from "@/app/context/api-key-context";
 import { SectionHeader } from "@/components/ui/section-header";
 import { LiveEventCard } from "@/components/ui/live-event-card";
 import { ClaudeSparkle } from "@/components/ui/claude-logo";
+import { readApiErrorMessage } from "@/lib/client/api";
 import type { SimulationEvent, Account, Competitor } from "@/types";
 
 interface LiveAgentFeedProps {
@@ -15,6 +17,7 @@ interface LiveAgentFeedProps {
 }
 
 export function LiveAgentFeed({ events, account, competitors }: LiveAgentFeedProps) {
+  const { getRequestHeaders } = useApiKey();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [aiEvents, setAiEvents] = useState<SimulationEvent[]>([]);
@@ -40,30 +43,52 @@ export function LiveAgentFeed({ events, account, competitors }: LiveAgentFeedPro
     try {
       const response = await fetch("/api/agent", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...getRequestHeaders(),
+        },
         body: JSON.stringify({ agentName: randomAgent, account, competitors }),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        const newEvent: SimulationEvent = {
-          id: `ai-${Date.now()}`,
+      if (!response.ok) {
+        throw new Error(await readApiErrorMessage(response));
+      }
+
+      const data = await response.json();
+      const newEvent: SimulationEvent = {
+        id: `ai-${Date.now()}`,
+        timestamp: new Date(),
+        agentName: randomAgent,
+        priority: data.priority ?? "medium",
+        type: data.type ?? "research_signal",
+        title: data.title ?? "Analysis complete",
+        explanation: data.explanation ?? "Agent analysis completed.",
+        recommendedAction: data.recommendedAction,
+      };
+      setAiEvents((prev) => [newEvent, ...prev].slice(0, 20));
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Add your Claude API key in the top right and try again.";
+
+      setAiEvents((prev) => [
+        {
+          id: `ai-error-${Date.now()}`,
           timestamp: new Date(),
           agentName: randomAgent,
-          priority: data.priority ?? "medium",
-          type: data.type ?? "research_signal",
-          title: data.title ?? "Analysis complete",
-          explanation: data.explanation ?? "Agent analysis completed.",
-          recommendedAction: data.recommendedAction,
-        };
-        setAiEvents((prev) => [newEvent, ...prev].slice(0, 20));
-      }
-    } catch {
-      // Silently fail — the simulation events still show
+          priority: "high",
+          type: "research_signal",
+          title: "Claude request needs attention",
+          explanation: message,
+          recommendedAction: "Update your Claude API key from the top right, then retry.",
+        },
+        ...prev,
+      ].slice(0, 20));
     } finally {
       setIsGenerating(false);
     }
-  }, [account, competitors]);
+  }, [account, competitors, getRequestHeaders]);
 
   const allEvents = [...aiEvents, ...events].sort(
     (a, b) => b.timestamp.getTime() - a.timestamp.getTime()

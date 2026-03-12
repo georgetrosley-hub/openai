@@ -3,7 +3,9 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Square, Trash2 } from "lucide-react";
+import { useApiKey } from "@/app/context/api-key-context";
 import { cn } from "@/lib/utils";
+import { readApiErrorMessage } from "@/lib/client/api";
 import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import type { Account, Competitor } from "@/types";
 
@@ -27,6 +29,7 @@ export function ChatPanel({
   competitors,
   activeSection,
 }: ChatPanelProps) {
+  const { hasApiKey, getRequestHeaders } = useApiKey();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
@@ -65,7 +68,10 @@ export function ChatPanel({
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...getRequestHeaders(),
+        },
         body: JSON.stringify({
           messages: newMessages,
           account,
@@ -75,7 +81,9 @@ export function ChatPanel({
         signal: controller.signal,
       });
 
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      if (!response.ok) {
+        throw new Error(await readApiErrorMessage(response));
+      }
       const reader = response.body?.getReader();
       if (!reader) throw new Error("No reader");
 
@@ -117,7 +125,9 @@ export function ChatPanel({
           {
             role: "assistant",
             content:
-              "I couldn't process that request. Make sure your API key is configured in `.env.local`.",
+              error instanceof Error
+                ? error.message
+                : "I couldn't process that request. Add your Claude API key in the top right and try again.",
           },
         ]);
       }
@@ -125,7 +135,7 @@ export function ChatPanel({
       setIsStreaming(false);
       abortRef.current = null;
     }
-  }, [input, messages, isStreaming, account, competitors, activeSection]);
+  }, [input, messages, isStreaming, account, competitors, activeSection, getRequestHeaders]);
 
   const stopStreaming = useCallback(() => {
     abortRef.current?.abort();
@@ -215,6 +225,11 @@ export function ChatPanel({
                     I have full context on {account.name}. Ask me anything about
                     the account, deal strategy, or competitive positioning.
                   </p>
+                  {!hasApiKey && (
+                    <div className="mb-6 rounded-lg border border-claude-coral/20 bg-claude-coral/[0.06] px-3 py-2 text-[11px] text-claude-coral/85">
+                      If chat is not responding yet, add your Claude API key from the top right.
+                    </div>
+                  )}
                   <div className="space-y-2 w-full">
                     {[
                       `What should I focus on this week for ${account.name}?`,

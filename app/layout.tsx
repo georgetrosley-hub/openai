@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { ApiKeyProvider } from "@/app/context/api-key-context";
+import { ThemeProvider } from "@/app/context/theme-context";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -27,10 +29,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const themeScript = `
+    (() => {
+      try {
+        const storedTheme = window.localStorage.getItem("claude-seller-hub-theme");
+        const theme =
+          storedTheme === "dark" || storedTheme === "light"
+            ? storedTheme
+            : window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.classList.toggle("dark", theme === "dark");
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  `;
+
   return (
-    <html lang="en" className="dark">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        {children}
+        <ThemeProvider>
+          <ApiKeyProvider>{children}</ApiKeyProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

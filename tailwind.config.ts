@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const cssColor = (variableName: string) => `rgb(var(${variableName}) / <alpha-value>)`;
+
 const config: Config = {
   darkMode: "class",
   content: [
@@ -11,26 +13,26 @@ const config: Config = {
     extend: {
       colors: {
         surface: {
-          DEFAULT: "#111110",
-          elevated: "#1B1A19",
-          muted: "#252321",
-          border: "#302D2A",
-          divider: "#272523",
+          DEFAULT: cssColor("--surface"),
+          elevated: cssColor("--surface-elevated"),
+          muted: cssColor("--surface-muted"),
+          border: cssColor("--surface-border"),
+          divider: cssColor("--surface-divider"),
         },
         text: {
-          primary: "#EDECE9",
-          secondary: "#A8A29E",
-          muted: "#6B6560",
-          faint: "#4A4540",
+          primary: cssColor("--text-primary"),
+          secondary: cssColor("--text-secondary"),
+          muted: cssColor("--text-muted"),
+          faint: cssColor("--text-faint"),
         },
         accent: {
-          DEFAULT: "#DA7756",
-          muted: "#C06A4B",
-          subtle: "#4A2F24",
-          glow: "rgba(218, 119, 86, 0.12)",
+          DEFAULT: cssColor("--accent"),
+          muted: cssColor("--accent-muted"),
+          subtle: cssColor("--accent-subtle"),
+          glow: "rgb(var(--accent) / 0.12)",
         },
         claude: {
-          coral: "#DA7756",
+          coral: cssColor("--accent"),
           "coral-light": "#E8917A",
           "coral-dark": "#B5614A",
           sand: "#D4C5B2",

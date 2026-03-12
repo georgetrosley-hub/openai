@@ -1,14 +1,15 @@
-import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest } from "next/server";
 import { buildAccountContext } from "@/lib/prompts/base";
 import { CONTENT_PROMPTS } from "@/lib/prompts/content";
-
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+import {
+  createAnthropicClient,
+  getAnthropicErrorMessage,
+  getAnthropicErrorStatus,
+} from "@/lib/server/anthropic";
 
 export async function POST(req: NextRequest) {
   try {
+    const anthropic = createAnthropicClient(req);
     const { type, account, competitors, context } = await req.json();
 
     const contentPrompt = CONTENT_PROMPTS[type] ?? CONTENT_PROMPTS.strategy_assessment;
@@ -57,8 +58,11 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error("Generate API error:", error);
     return new Response(
-      JSON.stringify({ error: "Failed to generate content" }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
+      JSON.stringify({ error: getAnthropicErrorMessage(error) }),
+      {
+        status: getAnthropicErrorStatus(error),
+        headers: { "Content-Type": "application/json" },
+      }
     );
   }
 }

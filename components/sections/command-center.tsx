@@ -18,6 +18,13 @@ import { useStreaming } from "@/lib/hooks/use-streaming";
 import type { Account, Agent, Competitor } from "@/types";
 
 const ease = [0.25, 0.46, 0.45, 0.94];
+const chartGridColor = "rgb(var(--surface-divider))";
+const chartTickColor = "rgb(var(--text-muted))";
+const chartTooltipBackground = "rgb(var(--surface-elevated))";
+const chartTooltipBorder = "1px solid rgb(var(--surface-border))";
+const chartTooltipLabel = "rgb(var(--text-secondary))";
+const chartAccent = "rgb(var(--accent))";
+const chartAccentMuted = "rgb(var(--accent-muted))";
 
 interface CommandCenterProps {
   account: Account;
@@ -147,24 +154,24 @@ export function CommandCenter({
               <AreaChart data={forecastData} margin={{ top: 8, right: 8, left: -24, bottom: 0 }}>
                 <defs>
                   <linearGradient id="landGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#DA7756" stopOpacity={0.15} />
-                    <stop offset="100%" stopColor="#DA7756" stopOpacity={0} />
+                    <stop offset="0%" stopColor={chartAccent} stopOpacity={0.15} />
+                    <stop offset="100%" stopColor={chartAccent} stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="expGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#C06A4B" stopOpacity={0.08} />
-                    <stop offset="100%" stopColor="#C06A4B" stopOpacity={0} />
+                    <stop offset="0%" stopColor={chartAccentMuted} stopOpacity={0.08} />
+                    <stop offset="100%" stopColor={chartAccentMuted} stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="2 2" stroke="#272523" vertical={false} strokeOpacity={0.5} />
-                <XAxis dataKey="month" tick={{ fontSize: 11, fill: "#6B6560" }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 10, fill: "#6B6560" }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}`} width={40} />
+                <CartesianGrid strokeDasharray="2 2" stroke={chartGridColor} vertical={false} strokeOpacity={0.5} />
+                <XAxis dataKey="month" tick={{ fontSize: 11, fill: chartTickColor }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 10, fill: chartTickColor }} axisLine={false} tickLine={false} tickFormatter={(v) => `$${v}`} width={40} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: "#1B1A19", border: "1px solid #302D2A", borderRadius: "8px", padding: "8px 14px", boxShadow: "0 4px 12px rgba(0,0,0,0.3)" }}
-                  labelStyle={{ color: "#A8A29E", fontSize: 11 }}
+                  contentStyle={{ backgroundColor: chartTooltipBackground, border: chartTooltipBorder, borderRadius: "8px", padding: "8px 14px", boxShadow: "0 4px 12px rgba(0,0,0,0.16)" }}
+                  labelStyle={{ color: chartTooltipLabel, fontSize: 11 }}
                   formatter={(value: number) => [`$${value.toFixed(2)}M`, ""]}
                 />
-                <Area type="monotone" dataKey="land" stroke="#DA7756" strokeWidth={1.5} fill="url(#landGrad)" />
-                <Area type="monotone" dataKey="expansion" stroke="#C06A4B" strokeWidth={1} fill="url(#expGrad)" strokeDasharray="4 2" />
+                <Area type="monotone" dataKey="land" stroke={chartAccent} strokeWidth={1.5} fill="url(#landGrad)" />
+                <Area type="monotone" dataKey="expansion" stroke={chartAccentMuted} strokeWidth={1} fill="url(#expGrad)" strokeDasharray="4 2" />
               </AreaChart>
             </ResponsiveContainer>
           </div>

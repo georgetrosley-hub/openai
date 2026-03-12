@@ -1,13 +1,14 @@
-import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest } from "next/server";
 import { CHAT_SYSTEM_PROMPT, buildAccountContext } from "@/lib/prompts/base";
-
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+import {
+  createAnthropicClient,
+  getAnthropicErrorMessage,
+  getAnthropicErrorStatus,
+} from "@/lib/server/anthropic";
 
 export async function POST(req: NextRequest) {
   try {
+    const anthropic = createAnthropicClient(req);
     const { messages, account, competitors, section } = await req.json();
 
     const accountContext = account
@@ -61,8 +62,11 @@ ${section ? `\nThe seller is currently viewing the "${section}" section of the p
   } catch (error) {
     console.error("Chat API error:", error);
     return new Response(
-      JSON.stringify({ error: "Failed to process chat request" }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
+      JSON.stringify({ error: getAnthropicErrorMessage(error) }),
+      {
+        status: getAnthropicErrorStatus(error),
+        headers: { "Content-Type": "application/json" },
+      }
     );
   }
 }

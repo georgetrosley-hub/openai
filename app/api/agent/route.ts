@@ -1,14 +1,15 @@
-import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest, NextResponse } from "next/server";
 import { buildAccountContext } from "@/lib/prompts/base";
 import { AGENT_PROMPTS } from "@/lib/prompts/agents";
-
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+import {
+  createAnthropicClient,
+  getAnthropicErrorMessage,
+  getAnthropicErrorStatus,
+} from "@/lib/server/anthropic";
 
 export async function POST(req: NextRequest) {
   try {
+    const anthropic = createAnthropicClient(req);
     const { agentName, account, competitors } = await req.json();
 
     const agentPrompt =
@@ -46,8 +47,8 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error("Agent API error:", error);
     return NextResponse.json(
-      { error: "Failed to process agent request" },
-      { status: 500 }
+      { error: getAnthropicErrorMessage(error) },
+      { status: getAnthropicErrorStatus(error) }
     );
   }
 }
