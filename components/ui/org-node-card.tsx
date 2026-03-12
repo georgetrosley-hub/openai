@@ -11,11 +11,11 @@ interface OrgNodeCardProps {
 }
 
 const statusStyles = {
-  latent: "border-surface-border/60 bg-surface/55",
-  identified: "border-surface-border bg-surface-elevated/75",
-  engaged: "border-accent-subtle/70 bg-surface-elevated/85",
-  pilot: "border-accent-muted/70 bg-surface-elevated/90",
-  deployed: "border-accent/55 bg-surface-elevated",
+  latent: "border-surface-border/50 bg-surface/55",
+  identified: "border-surface-border/70 bg-surface-elevated/75",
+  engaged: "border-claude-coral/20 bg-surface-elevated/85",
+  pilot: "border-claude-coral/35 bg-claude-coral/[0.04]",
+  deployed: "border-claude-coral/50 bg-claude-coral/[0.06]",
 };
 
 const statusText: Record<OrgNode["status"], string> = {
@@ -40,9 +40,9 @@ export function OrgNodeCard({ node, index = 0, className }: OrgNodeCardProps) {
         scale: isActive ? [1, 1.012, 1] : 1,
         boxShadow: isActive
           ? [
-              "0 0 0 rgba(196,181,154,0)",
-              "0 8px 24px rgba(196,181,154,0.17)",
-              "0 0 0 rgba(196,181,154,0)",
+              "0 0 0 rgba(218,119,86,0)",
+              "0 8px 24px rgba(218,119,86,0.12)",
+              "0 0 0 rgba(218,119,86,0)",
             ]
           : "0 0 0 rgba(0,0,0,0)",
       }}
@@ -54,7 +54,7 @@ export function OrgNodeCard({ node, index = 0, className }: OrgNodeCardProps) {
         scale: { duration: 2.2, repeat: Infinity, ease: "easeInOut" },
       }}
       className={cn(
-        "group rounded-md border px-4 py-3 backdrop-blur-sm transition-colors duration-300",
+        "group rounded-lg border px-4 py-3 backdrop-blur-sm transition-colors duration-300",
         statusStyles[node.status],
         className
       )}
@@ -72,21 +72,38 @@ export function OrgNodeCard({ node, index = 0, className }: OrgNodeCardProps) {
           <p className="mt-1 text-[11px] leading-relaxed text-text-muted">
             {node.useCase}
           </p>
-          <p className="mt-2 text-[10px] uppercase tracking-[0.08em] text-text-faint">
-            Status: {statusText[node.status]}
-          </p>
+          <div className="mt-2 flex items-center gap-2">
+            <span
+              className={cn(
+                "h-1.5 w-1.5 rounded-full",
+                node.status === "deployed" && "bg-claude-coral",
+                node.status === "pilot" && "bg-claude-coral/70",
+                node.status === "engaged" && "bg-claude-coral/50",
+                node.status === "identified" && "bg-text-muted/50",
+                node.status === "latent" && "bg-text-faint/40"
+              )}
+            />
+            <span className="text-[10px] uppercase tracking-[0.08em] text-text-faint">
+              {statusText[node.status]}
+            </span>
+          </div>
           <p className="mt-1 text-[10px] text-text-faint">
             {node.recommendedNextStep}
           </p>
         </div>
         <div className="flex shrink-0 flex-col items-end">
-          <span className="text-[12px] font-semibold tabular-nums text-accent">
+          <span
+            className={cn(
+              "text-[12px] font-semibold tabular-nums",
+              isActive ? "text-claude-coral" : "text-text-muted"
+            )}
+          >
             ${node.arrPotential.toFixed(2)}M
           </span>
           <span className="mt-0.5 text-[10px] uppercase tracking-[0.08em] text-text-muted">
-            ARR potential
+            ARR
           </span>
-          <span className="mt-1 text-[10px] text-text-muted">
+          <span className="mt-1 text-[10px] tabular-nums text-text-muted">
             {node.buyingLikelihood}%
           </span>
         </div>

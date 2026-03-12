@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
+import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import type { Account } from "@/types";
 
 interface ExecutiveNarrativeProps {
@@ -114,6 +115,15 @@ export function ExecutiveNarrative({ account }: ExecutiveNarrativeProps) {
 
   const n = narratives[account.id] ?? narratives.comcast;
 
+  const sections = [
+    { label: "Why now", content: n.whyNow },
+    { label: "Why Claude", content: n.whyClaude },
+    { label: "Alternatives", content: n.whyNot },
+    { label: "Impact", content: n.impact },
+    { label: "Governance", content: n.governance },
+    { label: "Rollout", content: n.rollout },
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -123,40 +133,30 @@ export function ExecutiveNarrative({ account }: ExecutiveNarrativeProps) {
     >
       <SectionHeader
         title="Executive narrative"
-        subtitle="Account overview"
+        subtitle="Account-level strategic overview"
       />
       <motion.div
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1, duration: 0.5 }}
-        className="max-w-2xl space-y-8 rounded-md border border-surface-border/60 bg-surface-elevated/40 px-8 py-8"
+        className="max-w-2xl space-y-8 rounded-lg border border-surface-border/50 bg-surface-elevated/40 px-8 py-8"
       >
-        <div>
-          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-text-muted mb-2">Why now</p>
-          <p className="text-[13px] text-text-secondary leading-relaxed">{n.whyNow}</p>
-        </div>
-        <div>
-          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-text-muted mb-2">Why Claude</p>
-          <p className="text-[13px] text-text-secondary leading-relaxed">{n.whyClaude}</p>
-        </div>
-        <div>
-          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-text-muted mb-2">Alternatives</p>
-          <p className="text-[13px] text-text-secondary leading-relaxed">{n.whyNot}</p>
-        </div>
-        <div>
-          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-text-muted mb-2">Impact</p>
-          <p className="text-[13px] text-text-secondary leading-relaxed">{n.impact}</p>
-        </div>
-        <div>
-          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-text-muted mb-2">Governance</p>
-          <p className="text-[13px] text-text-secondary leading-relaxed">{n.governance}</p>
-        </div>
-        <div>
-          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-text-muted mb-2">Rollout</p>
-          <p className="text-[13px] text-text-secondary leading-relaxed">{n.rollout}</p>
-        </div>
-        <div className="pt-2 border-t border-surface-border/50">
-          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-text-muted mb-2">Value · Sponsors · Next</p>
+        {sections.map(({ label, content }, i) => (
+          <motion.div
+            key={label}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 + i * 0.04, duration: 0.4 }}
+          >
+            <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-text-muted mb-2">{label}</p>
+            <p className="text-[13px] text-text-secondary leading-relaxed">{content}</p>
+          </motion.div>
+        ))}
+        <div className="pt-3 border-t border-surface-border/40">
+          <div className="flex items-center gap-2 mb-2">
+            <ClaudeSparkle size={10} className="text-claude-coral/40" />
+            <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-claude-coral/50">Value · Sponsors · Next</p>
+          </div>
           <p className="text-[13px] text-text-secondary leading-relaxed">
             {n.value} {account.executiveSponsors.join(", ")}. {n.nextMeeting}
           </p>

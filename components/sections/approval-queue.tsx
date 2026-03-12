@@ -41,7 +41,7 @@ export function ApprovalQueue({
     >
       <SectionHeader
         title="Approval queue"
-        subtitle={pending.length > 0 ? "Review required" : undefined}
+        subtitle={pending.length > 0 ? `${pending.length} pending review` : undefined}
       />
 
       <AnimatePresence>
@@ -51,15 +51,15 @@ export function ApprovalQueue({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.35 }}
-            className="flex items-center gap-3 rounded-md border border-accent/20 bg-accent/5 px-5 py-4 max-w-2xl"
+            className="flex items-center gap-3 rounded-lg border border-claude-coral/20 bg-claude-coral/[0.04] px-5 py-4 max-w-2xl"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.15, type: "spring", stiffness: 400 }}
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent/20"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-claude-coral/15"
             >
-              <Check className="h-4 w-4 text-accent-muted" strokeWidth={2.5} />
+              <Check className="h-4 w-4 text-claude-coral" strokeWidth={2.5} />
             </motion.div>
             <div>
               <p className="text-[13px] font-medium text-text-primary">Approved</p>
@@ -70,12 +70,12 @@ export function ApprovalQueue({
       </AnimatePresence>
 
       {pending.length === 0 && !lastApprovedTitle ? (
-        <div className="rounded-md border border-surface-border/50 bg-surface-elevated/30 py-16 px-8 text-center">
+        <div className="rounded-lg border border-surface-border/40 bg-surface-elevated/30 py-16 px-8 text-center">
           <p className="text-[13px] text-text-muted">
             No approvals pending
           </p>
           <p className="mt-1 text-[12px] text-text-faint">
-            Approvals appear when required
+            Agents will surface items requiring human review
           </p>
         </div>
       ) : (

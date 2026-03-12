@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
 import type { DealStageInfo } from "@/types";
 
 interface TimelineStageProps {
@@ -21,16 +22,21 @@ export function TimelineStage({ stage, index, isLast }: TimelineStageProps) {
       <div className="flex flex-col items-center pt-0.5">
         <div
           className={cn(
-            "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[10px] font-medium",
-            stage.current && "border-accent/60 bg-accent/5 text-accent-muted",
-            stage.completed && !stage.current && "border-surface-border bg-surface-muted/30 text-text-muted",
+            "flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[10px] font-medium transition-colors",
+            stage.current && "border-claude-coral/50 bg-claude-coral/10 text-claude-coral",
+            stage.completed && !stage.current && "border-claude-coral/30 bg-claude-coral/5 text-claude-coral/60",
             !stage.completed && !stage.current && "border-surface-border/70 bg-transparent text-text-faint"
           )}
         >
-          {stage.completed ? "✓" : index + 1}
+          {stage.completed ? <Check className="h-3 w-3" strokeWidth={2.5} /> : index + 1}
         </div>
         {!isLast && (
-          <div className="my-0.5 h-10 w-px bg-surface-border/60" />
+          <div
+            className={cn(
+              "my-0.5 h-10 w-px",
+              stage.completed ? "bg-claude-coral/20" : "bg-surface-border/50"
+            )}
+          />
         )}
       </div>
       <div className="flex-1 pb-8">
@@ -43,8 +49,8 @@ export function TimelineStage({ stage, index, isLast }: TimelineStageProps) {
           {stage.label}
         </p>
         <div className="mt-1 flex gap-4 text-[11px] text-text-muted">
-          <span>{stage.confidence}%</span>
-          <span className="text-accent-muted">${stage.projectedArr.toFixed(2)}M</span>
+          <span className="tabular-nums">{stage.confidence}%</span>
+          <span className="tabular-nums text-claude-coral/70">${stage.projectedArr.toFixed(2)}M</span>
         </div>
         {stage.blockers.length > 0 && (
           <p className="mt-2 text-[11px] text-text-faint leading-relaxed">

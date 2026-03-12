@@ -9,7 +9,7 @@ const categoryOrder = ["frontier", "coding", "search", "workflow", "cloud", "ver
 const categoryLabels: Record<string, string> = {
   frontier: "Frontier models",
   coding: "Coding tools",
-  search: "Search and knowledge",
+  search: "Search & knowledge",
   workflow: "Workflow platforms",
   cloud: "Cloud incumbents",
   vertical: "Vertical",
@@ -42,7 +42,7 @@ export function CompetitiveBattlefield({ competitors }: CompetitiveBattlefieldPr
     >
       <SectionHeader
         title="Competitive landscape"
-        subtitle="Account positioning"
+        subtitle="Account positioning intelligence"
       />
 
       {topRisk && (
@@ -50,9 +50,9 @@ export function CompetitiveBattlefield({ competitors }: CompetitiveBattlefieldPr
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15, duration: 0.4 }}
-          className="rounded-md border border-surface-border/70 bg-surface-elevated/50 px-6 py-5"
+          className="rounded-lg border border-claude-coral/15 bg-claude-coral/[0.03] px-6 py-5"
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.1em] text-text-muted mb-2">
+          <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-claude-coral/50 mb-2">
             Primary competitive pressure
           </p>
           <p className="text-[15px] font-medium text-text-primary">{topRisk.name}</p>
@@ -63,7 +63,7 @@ export function CompetitiveBattlefield({ competitors }: CompetitiveBattlefieldPr
       <div className="space-y-10">
         {byCategory.filter(({ items }) => items.length > 0).map(({ category, label, items }) => (
             <div key={category}>
-              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.1em] text-text-muted">
+              <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.12em] text-text-muted">
                 {label}
               </p>
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

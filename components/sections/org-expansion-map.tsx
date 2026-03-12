@@ -116,15 +116,15 @@ export function OrgExpansionMap({ nodes }: OrgExpansionMapProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="max-w-[46ch] text-right text-[12px] text-accent-muted"
+            className="max-w-[46ch] text-right text-[12px] text-claude-coral/60"
           >
             {activeNodes.map((n) => n.name).join(" · ")}
           </motion.div>
         )}
       </div>
 
-      <div className="relative overflow-hidden rounded-xl border border-accent-subtle/40 bg-gradient-to-br from-surface-elevated/85 via-surface/75 to-surface-elevated/85 p-6">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(196,181,154,0.17),transparent_45%),radial-gradient(circle_at_18%_18%,rgba(154,143,122,0.09),transparent_35%),radial-gradient(circle_at_86%_84%,rgba(154,143,122,0.08),transparent_30%)]" />
+      <div className="relative overflow-hidden rounded-xl border border-claude-coral/10 bg-gradient-to-br from-surface-elevated/85 via-surface/75 to-surface-elevated/85 p-6">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(218,119,86,0.08),transparent_45%),radial-gradient(circle_at_18%_18%,rgba(218,119,86,0.04),transparent_35%),radial-gradient(circle_at_86%_84%,rgba(218,119,86,0.03),transparent_30%)]" />
 
         <div className="relative h-[760px] min-w-[940px]">
           <svg
@@ -135,9 +135,9 @@ export function OrgExpansionMap({ nodes }: OrgExpansionMapProps) {
           >
             <defs>
               <linearGradient id="org-link-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="rgba(154,143,122,0.18)" />
-                <stop offset="50%" stopColor="rgba(196,181,154,0.5)" />
-                <stop offset="100%" stopColor="rgba(154,143,122,0.18)" />
+                <stop offset="0%" stopColor="rgba(218,119,86,0.1)" />
+                <stop offset="50%" stopColor="rgba(218,119,86,0.35)" />
+                <stop offset="100%" stopColor="rgba(218,119,86,0.1)" />
               </linearGradient>
             </defs>
 
