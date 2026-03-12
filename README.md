@@ -1,64 +1,42 @@
-# Anthropic Enterprise Expansion OS
+# Claude Enterprise Expansion Engine
 
-A premium, Anthropic-branded, dark-mode web app simulating how multiple Claude agents help an enterprise account executive land and expand Claude inside Fortune 500 companies. Built to feel like an internal Anthropic product prototype with production-level design polish.
+A prototype of what Claude-powered enterprise GTM could look like: agent-assisted discovery, competitive intel, and human oversight—not automation that replaces the rep.
 
-## How to run
+## What this is
+
+Nine specialized agents (Territory Intelligence, Research, Competitive Strategy, Technical Architecture, Security & Compliance, Legal & Procurement, Executive Narrative, Expansion Strategy, Human Oversight) work in the background to surface signals, recommendations, and approvals. The AE stays in control: approve, modify, or reject.
+
+- **Command Center** — Account overview, land/expansion metrics, pipeline forecast, and a live recommendation
+- **Agent Activity** — Real-time stream of events (champions identified, blockers, competitor pressure)
+- **Approval Queue** — Human-in-the-loop for high-impact decisions
+- **Competitive Intel** — Account-specific competitor risk and positioning
+- **Architecture** — Deployment readiness and integration planning
+- **Org Expansion Map** — Department-level expansion paths and ARR potential
+- **Deal Timeline** — Stage progression and projected value
+- **Exec Narrative** — Account-level story (why now, why Claude, next meeting)
+
+Today this runs on **deterministic simulation** (no backend, no API). The thesis: with the Claude API and real data (CRM, calls, documents), these agents could power a true enterprise sales command center.
+
+## What I'd build next
+
+1. **Claude API integration** — Replace simulation with live reasoning. Agents pull real account signals from CRM, call summaries, and documents.
+2. **Pipeline sync** — Connect to Salesforce/HubSpot. Auto-enrich deals with org structure, competitive intel, and risk scores.
+3. **Governance & audit trail** — Every agent action logged. Human-in-the-loop preserved. Compliance-ready for regulated industries.
+4. **Executive briefing mode** — One-click synthesis for QBRs and exec sponsor calls.
+
+## Run it
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
-
-## Project structure
-
-```
-├── app/
-│   ├── context/          # App state and simulation
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── globals.css
-├── components/
-│   ├── layout/           # Sidebar, status bar
-│   ├── sections/         # Command Center, Live Feed, Org Map, etc.
-│   └── ui/               # Reusable cards, metrics
-├── data/
-│   ├── accounts.ts       # Target account mock data
-│   ├── agents.ts         # Nine Claude agent definitions
-│   └── competitors.ts    # Competitor data and account-specific risk
-├── lib/
-│   ├── simulation.ts     # Deterministic event/approval engine
-│   └── utils.ts
-└── types/
-    └── index.ts          # Shared TypeScript types
-```
-
-## Where to edit
-
-### Account data
-**`data/accounts.ts`** — Add or modify target accounts. Each account includes:
-- Employee count, developer population, AI maturity
-- Security/compliance/competitive metrics
-- Executive sponsors, first wedge, land/expansion values
-- Top blockers and expansion paths
-
-### Agent behavior
-**`data/agents.ts`** — Define the nine agents (Territory Intelligence, Research, Competitive Strategy, Technical Architecture, Security and Compliance, Legal and Procurement, Executive Narrative, Expansion Strategy, Human Oversight).
-
-**`lib/simulation.ts`** — Edit event and approval templates per account. Add new event types in `EVENT_TEMPLATES` and approval prompts in `APPROVAL_TEMPLATES`. Event generation is deterministic (based on account ID and tick).
-
-### Styling and theme
-**`tailwind.config.ts`** — Color palette: `surface`, `text`, `accent`. Warm charcoal (`#1a1816`), soft ivory (`#f5f2ef`), muted clay/bronze (`#b8a88a`).
-
-**`app/globals.css`** — CSS variables and base styles.
+Open [http://localhost:3000](http://localhost:3000). Switch accounts (JPMorgan, Pfizer, Comcast, etc.) from the header to see account-specific narratives, events, and approvals.
 
 ## Tech stack
 
-- Next.js 14 App Router
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- Recharts
+Next.js 14, TypeScript, Tailwind CSS, Framer Motion, Recharts. Client-side only.
 
-No backend or API calls. Simulation runs locally and deterministically for stable demos.
+---
+
+Built by George Trosley. If you'd like to explore this further, I'd love to talk.

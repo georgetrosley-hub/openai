@@ -12,6 +12,7 @@ import { ArchitectureSecurity } from "@/components/sections/architecture-securit
 import { DealTimeline } from "@/components/sections/deal-timeline";
 import { ApprovalQueue } from "@/components/sections/approval-queue";
 import { ExecutiveNarrative } from "@/components/sections/executive-narrative";
+import { Vision } from "@/components/sections/vision";
 import { motion, AnimatePresence } from "framer-motion";
 
 function MainContent() {
@@ -74,6 +75,7 @@ function MainContent() {
       />
     ),
     narrative: <ExecutiveNarrative account={account} />,
+    vision: <Vision />,
   };
 
   return (

@@ -11,6 +11,7 @@ import {
   Calendar,
   CheckSquare,
   FileText,
+  Sparkles,
 } from "lucide-react";
 
 const sections = [
@@ -22,6 +23,7 @@ const sections = [
   { id: "org", label: "Org Expansion", icon: Network },
   { id: "timeline", label: "Deal Timeline", icon: Calendar },
   { id: "narrative", label: "Exec Narrative", icon: FileText },
+  { id: "vision", label: "What's next", icon: Sparkles },
 ] as const;
 
 export type SectionId = (typeof sections)[number]["id"];
@@ -92,7 +94,7 @@ export function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
           </div>
           <div className="min-w-0">
             <p className="truncate text-[12px] font-medium text-text-secondary">George Trosley</p>
-            <p className="text-[10px] text-text-faint">Enterprise AE</p>
+            <p className="text-[10px] text-text-faint">Enterprise AE · East</p>
           </div>
         </div>
       </div>

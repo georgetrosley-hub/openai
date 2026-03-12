@@ -215,11 +215,16 @@ export function CommandCenter({
           transition={{ delay: 0.55, duration: 0.5, ease }}
           className="rounded-lg bg-surface-elevated/30 p-6"
         >
-          <div className="flex items-center gap-2 mb-3">
-            <ClaudeSparkle size={12} className="text-claude-coral/60" />
-            <p className="text-[12px] text-text-muted">
-              Claude recommendation
-            </p>
+          <div className="flex items-center justify-between gap-2 mb-3">
+            <div className="flex items-center gap-2">
+              <ClaudeSparkle size={12} className="text-claude-coral/60" />
+              <p className="text-[12px] text-text-muted">
+                Claude recommendation
+              </p>
+            </div>
+            <span className="text-[10px] text-text-faint">
+              With Claude API: live account signals
+            </span>
           </div>
           <p className="text-[18px] text-text-primary leading-relaxed">
             {currentRecommendation}
