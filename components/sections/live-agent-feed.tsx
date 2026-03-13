@@ -71,18 +71,19 @@ export function LiveAgentFeed({ events, account, competitors }: LiveAgentFeedPro
         error instanceof Error
           ? error.message
           : "Add your Claude API key in the top right and try again.";
+      const errorEvent: SimulationEvent = {
+        id: `ai-error-${Date.now()}`,
+        timestamp: new Date(),
+        agentName: randomAgent,
+        priority: "high",
+        type: "research_signal",
+        title: "Claude request needs attention",
+        explanation: message,
+        recommendedAction: "Update your Claude API key from the top right, then retry.",
+      };
 
       setAiEvents((prev) => [
-        {
-          id: `ai-error-${Date.now()}`,
-          timestamp: new Date(),
-          agentName: randomAgent,
-          priority: "high",
-          type: "research_signal",
-          title: "Claude request needs attention",
-          explanation: message,
-          recommendedAction: "Update your Claude API key from the top right, then retry.",
-        },
+        errorEvent,
         ...prev,
       ].slice(0, 20));
     } finally {
