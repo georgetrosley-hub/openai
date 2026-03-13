@@ -2,26 +2,26 @@ import { NextRequest, NextResponse } from "next/server";
 import { buildAccountContext } from "@/lib/prompts/base";
 import { AGENT_PROMPTS } from "@/lib/prompts/agents";
 import {
-  createDatabricksClient,
+  createAnthropicClient,
   DEFAULT_MODEL,
-  getDatabricksErrorMessage,
-  getDatabricksErrorStatus,
-} from "@/lib/server/databricks";
+  getAnthropicErrorMessage,
+  getAnthropicErrorStatus,
+} from "@/lib/server/anthropic";
 
 export async function POST(req: NextRequest) {
   try {
-    const client = createDatabricksClient(req);
+    const client = createAnthropicClient(req);
     const { agentName, account, competitors } = await req.json();
 
     const agentPrompt =
       AGENT_PROMPTS[agentName] ?? AGENT_PROMPTS["Research Agent"];
     const accountContext = buildAccountContext(account, competitors);
 
-    const response = await client.chat.completions.create({
+    const response = await client.messages.create({
       model: DEFAULT_MODEL,
       max_tokens: 512,
+      system: agentPrompt,
       messages: [
-        { role: "system", content: agentPrompt },
         {
           role: "user",
           content: `Analyze the following account and generate a single intelligence signal.\n\n${accountContext}\n\nRespond with a JSON object containing: { "title": "...", "explanation": "...", "recommendedAction": "...", "priority": "low|medium|high|critical", "type": "research_signal|champion_identified|competitor_detected|architecture_recommendation|security_blocker|procurement_friction|legal_review|expansion_path|executive_narrative|deal_stage_advanced" }`,
@@ -29,7 +29,11 @@ export async function POST(req: NextRequest) {
       ],
     });
 
-    const text = response.choices[0]?.message?.content ?? "";
+    const text =
+      response.content
+        ?.filter((c): c is { type: "text"; text: string } => c.type === "text")
+        .map((c) => c.text)
+        .join("") ?? "";
 
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (jsonMatch) {
@@ -51,8 +55,8 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error("Agent API error:", error);
     return NextResponse.json(
-      { error: getDatabricksErrorMessage(error) },
-      { status: getDatabricksErrorStatus(error) }
+      { error: getAnthropicErrorMessage(error) },
+      { status: getAnthropicErrorStatus(error) }
     );
   }
 }

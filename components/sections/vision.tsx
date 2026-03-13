@@ -6,7 +6,7 @@ import { Sparkles, Zap, Shield, BarChart3 } from "lucide-react";
 const roadmap = [
   {
     icon: Zap,
-    title: "Databricks Foundation Model API integration",
+    title: "Claude API integration",
     desc: "Replace deterministic simulation with live reasoning. Agents pull real account signals from CRM, call summaries, and documents to generate recommendations.",
   },
   {

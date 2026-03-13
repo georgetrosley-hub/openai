@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Handshake, ShieldAlert, Star, Users } from "lucide-react";
-import { DatabricksActionBar } from "@/components/ui/databricks-action-bar";
+import { ClaudeActionBar } from "@/components/ui/claude-action-bar";
 import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
 import type { Account, Competitor, Stakeholder } from "@/types";
@@ -68,8 +68,8 @@ export function Stakeholders({
         subtitle="The relationship plan I would build around the first wedge. This is a working map, not a claimed source-of-truth org chart."
       />
 
-      <DatabricksActionBar
-        title="Ask Databricks AI from inside the stakeholder map"
+      <ClaudeActionBar
+        title="Ask Claude from inside the stakeholder map"
         subtitle="Use AI to help multi-thread the account, coach the champion, and prep internal influence paths."
         account={account}
         competitors={competitors}

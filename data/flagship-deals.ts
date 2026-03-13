@@ -51,9 +51,9 @@ const flagshipDeals: Record<string, FlagshipDealContext> = {
     },
     competitiveBattle: {
       incumbent: "Internal SAS/Excel, Snowflake evaluation in progress",
-      displacementStrategy: "Position Databricks as the unified platform for trial analytics and RWE. Unity Catalog differentiates for regulated data. Land before Snowflake gains momentum.",
-      keyRisk: "Snowflake Cortex and life sciences focus may win if we're slow. Need executive sponsor to prioritize Databricks pilot.",
-      winCondition: "Clinical Data Sciences adopts Databricks for trial analytics. Quality comfortable with governance. Expands to RWE and R&D.",
+      displacementStrategy: "Position Claude as the unified platform for trial analytics and RWE. Unity Catalog differentiates for regulated data. Land before Snowflake gains momentum.",
+      keyRisk: "Snowflake Cortex and life sciences focus may win if we're slow. Need executive sponsor to prioritize Claude pilot.",
+      winCondition: "Clinical Data Sciences adopts Claude for trial analytics. Quality comfortable with governance. Expands to RWE and R&D.",
     },
     milestones: [
       { label: "Intro with Clinical Data Sciences", date: "Mar 10", status: "done", owner: "AE" },
@@ -82,7 +82,7 @@ const flagshipDeals: Record<string, FlagshipDealContext> = {
       incumbent: "Palantir Foundry in some R&D workflows",
       displacementStrategy: "Don't displace Palantir initially. Land with an additive use case (R&D data lake, Mosaic AI). Build value, then expand. Open platform and ecosystem flexibility as differentiator.",
       keyRisk: "Palantir relationship is strong. Need a use case that doesn't directly compete. R&D data platform is the wedge.",
-      winCondition: "R&D Data Platform adopts Databricks. Proves value. Expansion into clinical and manufacturing follows.",
+      winCondition: "R&D Data Platform adopts Claude. Proves value. Expansion into clinical and manufacturing follows.",
     },
     milestones: [
       { label: "R&D Data Platform intro", date: "Mar 8", status: "done", owner: "AE" },
@@ -111,7 +111,7 @@ const flagshipDeals: Record<string, FlagshipDealContext> = {
       incumbent: "Snowflake evaluation for data warehouse",
       displacementStrategy: "Position Lakehouse as better than warehouse + separate ML. Unified platform, Delta Lake, Mosaic AI. Win on architecture and time-to-value.",
       keyRisk: "Snowflake may win data warehouse decision. Need to land clinical analytics as distinct use case.",
-      winCondition: "Clinical Dev Ops adopts Databricks. Demonstrates value before Snowflake decision. Expands to RWE and regulatory.",
+      winCondition: "Clinical Dev Ops adopts Claude. Demonstrates value before Snowflake decision. Expands to RWE and regulatory.",
     },
     milestones: [
       { label: "Clin Dev Ops intro", date: "Mar 12", status: "done", owner: "AE" },
@@ -169,7 +169,7 @@ const flagshipDeals: Record<string, FlagshipDealContext> = {
       incumbent: "AWS, Google Cloud, fragmented analytics",
       displacementStrategy: "Unified platform for vaccines data. Multi-cloud option. EU residency. Position as modern alternative to fragmented stack.",
       keyRisk: "Multi-cloud strategy complicates. Need clear EU deployment path.",
-      winCondition: "Vaccines Data adopts Databricks. EU compliance validated. Expands to other therapeutic areas.",
+      winCondition: "Vaccines Data adopts Claude. EU compliance validated. Expands to other therapeutic areas.",
     },
     milestones: [
       { label: "Vaccines Data intro", date: "Mar 15", status: "done", owner: "AE" },

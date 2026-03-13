@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { DatabricksLogoIcon } from "@/components/ui/databricks-logo";
+import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import type { Account, Competitor } from "@/types";
 
 interface ArchitectureSecurityProps {
@@ -30,7 +30,7 @@ export function ArchitectureSecurity({ account, competitors }: ArchitectureSecur
         type: "strategy_assessment",
         account,
         competitors,
-        context: `Generate a detailed architecture recommendation for deploying Databricks at ${account.name}. Their existing tech stack includes: ${account.existingVendorFootprint.join(", ")}. Security sensitivity: ${account.securitySensitivity}/100. Compliance complexity: ${account.complianceComplexity}/100.\n\nInclude:\n1. Recommended deployment (Lakehouse, Unity Catalog, Mosaic AI) with reasoning\n2. Integration architecture with their existing stack (Veeva, clinical systems)\n3. Data flow design and access control with Unity Catalog\n4. Security controls (encryption, audit, data residency)\n5. Compliance requirements for life sciences (GxP, HIPAA)\n6. Phased rollout plan\n7. Technical prerequisites and blockers`,
+        context: `Generate a detailed architecture recommendation for deploying Claude at ${account.name}. Their existing tech stack includes: ${account.existingVendorFootprint.join(", ")}. Security sensitivity: ${account.securitySensitivity}/100. Compliance complexity: ${account.complianceComplexity}/100.\n\nInclude:\n1. Recommended deployment architecture with reasoning\n2. Integration architecture with their existing stack (Veeva, clinical systems)\n3. Data flow design and access control\n4. Security controls (encryption, audit, data residency)\n5. Compliance requirements for life sciences (GxP, HIPAA)\n6. Phased rollout plan\n7. Technical prerequisites and blockers`,
       },
     });
   }, [account, competitors, archRecommendation]);
@@ -57,7 +57,7 @@ export function ArchitectureSecurity({ account, competitors }: ArchitectureSecur
             <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-3">
               <div className="flex flex-col gap-2">
                 <div className="rounded-md border border-accent/25 bg-accent/[0.04] px-3 py-2 text-[12px] font-medium text-accent/90">
-                  Databricks API
+                  Claude API
                 </div>
                 <div className="rounded-md border border-surface-border/50 px-3 py-2 text-[11px] text-text-muted">
                   Retrieval
@@ -135,13 +135,13 @@ export function ArchitectureSecurity({ account, competitors }: ArchitectureSecur
         </div>
       </div>
 
-      {/* Databricks architecture recommendation */}
+      {/* Claude architecture recommendation */}
       <button
         onClick={generateArchRecommendation}
         disabled={archRecommendation.isStreaming}
         className="flex w-full items-center justify-center gap-2 rounded-lg border border-accent/20 bg-accent/[0.06] px-4 py-2.5 text-[13px] font-medium text-accent/90 transition-colors hover:bg-accent/10 disabled:opacity-50 sm:w-auto"
       >
-        <DatabricksLogoIcon size={14} />
+        <ClaudeSparkle size={14} />
         {archLoaded ? "Refresh Architecture Recommendation" : "Generate Architecture Recommendation"}
       </button>
 

@@ -3,7 +3,7 @@
 import { useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui/section-header";
-import { DatabricksActionBar } from "@/components/ui/databricks-action-bar";
+import { ClaudeActionBar } from "@/components/ui/claude-action-bar";
 import { getFlagshipDealContext } from "@/data/flagship-deals";
 import { useToast } from "@/app/context/toast-context";
 import { getPlansForThisWeek } from "@/lib/plans-for-week";
@@ -203,9 +203,9 @@ export function DealProgression({
           </div>
         </section>
 
-        <DatabricksActionBar
-          title="Ask Databricks AI inside the capture plan"
-          subtitle="Use Databricks AI as the AE's live operator, not just a separate utility. These requests are specific to the deal you're in."
+        <ClaudeActionBar
+          title="Ask Claude inside the capture plan"
+          subtitle="Use Claude as the AE's live operator. These requests are specific to the deal you're in."
           account={account}
           competitors={competitors}
           actions={[

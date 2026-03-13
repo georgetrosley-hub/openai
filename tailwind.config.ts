@@ -31,12 +31,8 @@ const config: Config = {
           subtle: cssColor("--accent-subtle"),
           glow: "rgb(var(--accent) / 0.12)",
         },
-        databricks: {
-          orange: cssColor("--accent"),
-          "orange-light": "#FF6B4D",
-          "orange-dark": "#CC2B1A",
-          teal: "#1B3139",
-          "teal-muted": "#2D4A54",
+        "claude-coral": {
+          DEFAULT: cssColor("--claude-coral"),
         },
       },
       fontFamily: {

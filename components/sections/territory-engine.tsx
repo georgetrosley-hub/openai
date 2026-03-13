@@ -10,7 +10,7 @@ import {
   Zap,
   ArrowRight,
 } from "lucide-react";
-import { DatabricksLogoIcon } from "@/components/ui/databricks-logo";
+import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import { SectionHeader } from "@/components/ui/section-header";
 
 const steps = [
@@ -62,7 +62,7 @@ export function TerritoryEngine() {
       <div className="rounded-[22px] border border-accent/25 bg-accent/[0.04] p-4 sm:p-6">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/15">
-            <DatabricksLogoIcon size={20} className="text-accent" />
+            <ClaudeSparkle size={20} className="text-accent" />
           </div>
           <div>
             <p className="text-[14px] font-medium text-text-primary">

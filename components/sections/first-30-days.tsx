@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, BriefcaseBusiness } from "lucide-react";
 import { SectionHeader } from "@/components/ui/section-header";
-import { DatabricksActionBar } from "@/components/ui/databricks-action-bar";
+import { ClaudeActionBar } from "@/components/ui/claude-action-bar";
 import type { Account, Competitor, ExecutionItem } from "@/types";
 
 interface First30DaysProps {
@@ -36,7 +36,7 @@ export function First30Days({
           </p>
         </div>
         <p className="max-w-2xl text-[14px] leading-relaxed text-text-muted">
-          The execution items that move the deal: in progress and ready. Use Databricks AI below to get a sequenced plan or messaging suggestions.
+          The execution items that move the deal: in progress and ready. Use Claude below to get a sequenced plan or messaging suggestions.
         </p>
         <div className="mt-5 space-y-3">
           {thisWeek.length === 0 ? (
@@ -66,8 +66,8 @@ export function First30Days({
         </div>
       </section>
 
-      <DatabricksActionBar
-        title="Ask Databricks AI about your first 30 days"
+      <ClaudeActionBar
+        title="Ask Claude about your first 30 days"
         subtitle="Get a sequenced plan, messaging for the champion, or next-step recommendations for this account."
         account={account}
         competitors={competitors}

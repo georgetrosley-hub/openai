@@ -5,7 +5,7 @@ import { AlertTriangle, ArrowRight, Crosshair, Users, Eye, CircleDot, Zap, Targe
 import { SectionHeader } from "@/components/ui/section-header";
 import type { SectionId } from "@/components/layout/sidebar";
 import { MetricCard } from "@/components/ui/metric-card";
-import { DatabricksLogoIcon } from "@/components/ui/databricks-logo";
+import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import { useToast } from "@/app/context/toast-context";
 import { isStale } from "@/lib/deal-health";
 import { getPlansForThisWeek, getPlansForThisWeekShort } from "@/lib/plans-for-week";
@@ -224,7 +224,7 @@ export function Overview({
         </p>
         <div className="max-w-4xl space-y-2">
           <h2 className="text-xl font-semibold tracking-tight text-text-primary sm:text-2xl">
-            How I&apos;d build pipeline and expansion for Databricks inside {account.name}
+            How I&apos;d build pipeline and expansion for Claude Enterprise inside {account.name}
           </h2>
           <p className="max-w-3xl text-[14px] leading-relaxed text-text-muted">
             First wedge, champion path, pilot design, executive alignment, competitive displacement, and the expansion story.
@@ -306,7 +306,7 @@ export function Overview({
         <aside className="min-w-0 space-y-4">
           <div className="rounded-[28px] border border-accent/15 bg-accent/[0.05] p-4 sm:p-6">
             <div className="flex items-center gap-2">
-              <DatabricksLogoIcon size={14} className="text-accent" />
+              <ClaudeSparkle size={14} className="text-claude-coral" />
               <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-accent/70">
                 My current take
               </p>
@@ -333,7 +333,7 @@ export function Overview({
             </p>
             <p className="mt-3 text-[12px] leading-relaxed text-text-muted">
               I would not try to out-market the incumbent. I would force a narrower comparison around model quality,
-              enterprise governance, and the specific workflow where Databricks wins.
+              enterprise governance, and the specific workflow where Claude wins.
             </p>
           </div>
         </aside>

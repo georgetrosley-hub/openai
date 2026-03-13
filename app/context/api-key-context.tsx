@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 
-const API_KEY_STORAGE_KEY = "databricks-gtm-api-key";
+const API_KEY_STORAGE_KEY = "claude-enterprise-gtm-api-key";
 
 interface ApiKeyContextValue {
   apiKey: string;
@@ -18,7 +18,7 @@ interface ApiKeyContextValue {
   isReady: boolean;
   setApiKey: (apiKey: string) => void;
   clearApiKey: () => void;
-  getRequestHeaders: () => { "x-databricks-api-key"?: string };
+  getRequestHeaders: () => { "x-api-key"?: string };
 }
 
 const ApiKeyContext = createContext<ApiKeyContextValue | null>(null);
@@ -53,7 +53,7 @@ export function ApiKeyProvider({ children }: { children: ReactNode }) {
       return {};
     }
 
-    return { "x-databricks-api-key": apiKey };
+    return { "x-api-key": apiKey };
   }, [apiKey]);
 
   const value = useMemo(

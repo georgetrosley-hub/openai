@@ -6,7 +6,7 @@ import { Search, Lightbulb, Code, HeadphonesIcon, FileText, BarChart3, Scale, Sh
 import { SectionHeader } from "@/components/ui/section-header";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
-import { DatabricksLogoIcon } from "@/components/ui/databricks-logo";
+import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import { cn } from "@/lib/utils";
 import type { Account, Competitor } from "@/types";
 
@@ -18,7 +18,7 @@ const useCases = [
   { id: "regulatory_submission", name: "Regulatory Submissions", icon: FileText, industry: "Life Sciences", function: "Regulatory", complexity: "High", timeToValue: "8-12 weeks", description: "Submission prep, document workflows, regulatory intelligence with governed AI" },
   { id: "medical_affairs", name: "Medical Affairs", icon: Users, industry: "Life Sciences", function: "Medical Affairs", complexity: "Medium", timeToValue: "6-10 weeks", description: "HCP engagement prep, knowledge retrieval, medical information requests" },
   { id: "manufacturing_analytics", name: "Manufacturing Analytics", icon: BarChart3, industry: "Life Sciences", function: "Manufacturing", complexity: "Medium", timeToValue: "6-10 weeks", description: "Quality, supply chain, and production analytics with Delta Lake" },
-  { id: "veeva_integration", name: "Veeva Integration", icon: Code, industry: "Life Sciences", function: "Clinical Ops", complexity: "Medium", timeToValue: "6-10 weeks", description: "Analytics on Veeva Vault and CRM data with Databricks" },
+  { id: "veeva_integration", name: "Veeva Integration", icon: Code, industry: "Life Sciences", function: "Clinical Ops", complexity: "Medium", timeToValue: "6-10 weeks", description: "Analytics on Veeva Vault and CRM data with Claude" },
 ];
 
 interface UseCaseLibraryProps {
@@ -47,7 +47,7 @@ export function UseCaseLibrary({ account, competitors }: UseCaseLibraryProps) {
         type: "use_case_recommendation",
         account,
         competitors,
-        context: `Based on ${account.name}'s profile, recommend the top 5 Databricks use cases for life sciences in priority order. Consider their industry, developer population of ${account.developerPopulation.toLocaleString()}, AI maturity of ${account.aiMaturityScore}/100, and existing vendor footprint.`,
+        context: `Based on ${account.name}'s profile, recommend the top 5 Claude use cases for life sciences in priority order. Consider their industry, developer population of ${account.developerPopulation.toLocaleString()}, AI maturity of ${account.aiMaturityScore}/100, and existing vendor footprint.`,
       },
     });
   }, [account, competitors, recommendation]);
@@ -80,14 +80,14 @@ export function UseCaseLibrary({ account, competitors }: UseCaseLibraryProps) {
       <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-end lg:justify-between">
         <SectionHeader
           title="Use case library"
-          subtitle="Databricks use cases for life sciences"
+          subtitle="Claude use cases for enterprise"
         />
         <button
           onClick={generateRecommendation}
           disabled={recommendation.isStreaming}
           className="flex w-full items-center justify-center gap-2 rounded-lg border border-accent/20 bg-accent/[0.06] px-4 py-2.5 text-[12px] font-medium text-accent/90 transition-colors hover:bg-accent/10 disabled:opacity-50 sm:w-auto lg:shrink-0"
         >
-          <DatabricksLogoIcon size={12} />
+          <ClaudeSparkle size={12} />
           Recommend for {account.name}
         </button>
       </div>

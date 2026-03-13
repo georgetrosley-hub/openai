@@ -12,7 +12,7 @@ export const accounts: Account[] = [
     competitivePressure: 75,
     existingVendorFootprint: ["Microsoft", "Veeva", "Salesforce", "AWS", "SAP"],
     executiveSponsors: ["Lidia Fonseca (CDO)", "Jennifer Taubert (J&J Pharma Chair)", "Ashley McEvoy (J&J MedTech Chair)"],
-    firstWedge: "Clinical trial analytics and RWE platform with Unity Catalog governance for GxP",
+    firstWedge: "R&D knowledge retrieval and regulated document workflows with Claude",
     estimatedLandValue: 2.2,
     estimatedExpansionValue: 6.5,
     topBlockers: [
@@ -37,7 +37,7 @@ export const accounts: Account[] = [
     competitivePressure: 80,
     existingVendorFootprint: ["Microsoft", "Veeva", "AWS", "Palantir", "Salesforce"],
     executiveSponsors: ["Caroline Litchfield (CFO)", "Sanat Chattopadhyay (EVP R&D)", "Jim Clyne (CIO)"],
-    firstWedge: "R&D data lake and Mosaic AI for computational chemistry and target discovery",
+    firstWedge: "R&D knowledge workflows and document analysis with Claude",
     estimatedLandValue: 1.9,
     estimatedExpansionValue: 5.8,
     topBlockers: [
@@ -62,7 +62,7 @@ export const accounts: Account[] = [
     competitivePressure: 78,
     existingVendorFootprint: ["Microsoft", "Veeva", "AWS", "Snowflake", "Salesforce"],
     executiveSponsors: ["David Elkins (CFO)", "Samit Hirawat (CCO)", "Elizabeth Mily (CIO)"],
-    firstWedge: "Clinical data platform with Delta Lake and Unity Catalog for trial analytics",
+    firstWedge: "Clinical document workflows and knowledge retrieval with Claude",
     estimatedLandValue: 1.6,
     estimatedExpansionValue: 4.2,
     topBlockers: [
@@ -87,7 +87,7 @@ export const accounts: Account[] = [
     competitivePressure: 72,
     existingVendorFootprint: ["Microsoft", "Veeva", "Salesforce", "AWS"],
     executiveSponsors: ["Lidia Fonseca (CDO/CTO)", "Dave Denton (CFO)", "Dawn Rogers (CPO)"],
-    firstWedge: "Clinical trial analytics and R&D data platform with Mosaic AI for research",
+    firstWedge: "Clinical trial documentation and R&D knowledge workflows with Claude",
     estimatedLandValue: 2.0,
     estimatedExpansionValue: 5.5,
     topBlockers: [
@@ -112,7 +112,7 @@ export const accounts: Account[] = [
     competitivePressure: 74,
     existingVendorFootprint: ["Microsoft", "Veeva", "AWS", "Google Cloud", "Salesforce"],
     executiveSponsors: ["Paul Hudson (CEO)", "Jean-Baptiste Chasseloup (CFO)", "Arnaud Robert (CDO)"],
-    firstWedge: "Clinical data and RWE platform with Unity Catalog for regulatory compliance",
+    firstWedge: "Regulated document workflows and knowledge platform with Claude",
     estimatedLandValue: 1.5,
     estimatedExpansionValue: 4.5,
     topBlockers: [

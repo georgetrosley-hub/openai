@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Activity, Radar, ShieldCheck } from "lucide-react";
-import { DatabricksActionBar } from "@/components/ui/databricks-action-bar";
+import { ClaudeActionBar } from "@/components/ui/claude-action-bar";
 import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
 import type { Account, AccountSignal, Competitor } from "@/types";
@@ -52,8 +52,8 @@ export function Signals({
         subtitle="The hypotheses I would pressure-test in discovery, pilot design, security review, and executive conversations."
       />
 
-      <DatabricksActionBar
-        title="Ask Databricks AI from inside the signal desk"
+      <ClaudeActionBar
+        title="Ask Claude from inside the signal desk"
         subtitle="Use AI to challenge assumptions, generate discovery questions, and sharpen the competitive point of view."
         account={account}
         competitors={competitors}
@@ -71,7 +71,7 @@ export function Signals({
           {
             id: "competitor-memo",
             label: "Competitor memo",
-            prompt: `Write a concise competitor memo for ${account.name}: who the most dangerous competitor is, how they will position, and how I should keep the deal focused on where Databricks wins.`,
+            prompt: `Write a concise competitor memo for ${account.name}: who the most dangerous competitor is, how they will position, and how I should keep the deal focused on where Claude wins.`,
           },
         ]}
       />

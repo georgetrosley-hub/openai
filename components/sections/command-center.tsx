@@ -12,7 +12,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { RefreshCw, Zap } from "lucide-react";
-import { DatabricksLogoIcon } from "@/components/ui/databricks-logo";
+import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import { StreamingContent } from "@/components/ui/streaming-content";
 import { useStreaming } from "@/lib/hooks/use-streaming";
 import type { Account, Agent, Competitor } from "@/types";
@@ -214,7 +214,7 @@ export function CommandCenter({
         >
           <div className="flex items-center justify-between gap-2 mb-3">
             <div className="flex items-center gap-2">
-              <DatabricksLogoIcon size={12} className="text-accent/60" />
+              <ClaudeSparkle size={12} className="text-accent/60" />
               <p className="text-[12px] text-text-muted">AI recommendation</p>
             </div>
           </div>
@@ -235,7 +235,7 @@ export function CommandCenter({
             {strategy.isStreaming ? (
               <RefreshCw className="h-3.5 w-3.5 animate-spin" />
             ) : (
-              <DatabricksLogoIcon size={14} className="text-accent" />
+              <ClaudeSparkle size={14} className="text-accent" />
             )}
             {strategyLoaded ? "Refresh Strategy" : "Generate Strategy Assessment"}
           </button>

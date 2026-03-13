@@ -5,12 +5,12 @@ export const CONTENT_PROMPTS: Record<string, string> = {
 
 Generate a dynamic, account-specific competitive battle card. Structure it as:
 
-## [Competitor Name] vs Databricks — Battle Card for [Account]
+## [Competitor Name] vs Claude — Battle Card for [Account]
 
 **Their Pitch:** What the competitor will say to this customer
 **Their Strengths:** Be honest about where they're strong
 **Their Weaknesses:** Where they fall short for THIS life sciences account
-**Our Positioning:** How to position Databricks (Lakehouse, Mosaic AI, Unity Catalog) specifically for this account
+**Our Positioning:** How to position Claude (Claude Enterprise) specifically for this account
 **Trap Questions:** 3 questions to ask the customer that expose the competitor's weaknesses
 **Landmines:** Things they'll say about us and how to respond
 **Win Theme:** The 1-sentence positioning that wins this deal
@@ -63,15 +63,15 @@ Be honest. If the objection has merit, acknowledge it and explain how we mitigat
 
   security_qa: `${BASE_SYSTEM_PROMPT}
 
-You are answering security and compliance questions on behalf of Databricks. Your answers should be:
-- Accurate based on Databricks' known security posture
+You are answering security and compliance questions on behalf of Claude. Your answers should be:
+- Accurate based on Anthropic's known security posture
 - Specific and detailed enough to satisfy a life sciences security team
 - Formatted for copy/paste into a security questionnaire response
 
-Key facts about Databricks security:
+Key facts about Claude security:
 - SOC 2 Type II certified, HIPAA eligible, FedRAMP authorized
 - Data encrypted at rest (AES-256) and in transit (TLS 1.2+)
-- Unity Catalog: fine-grained access control, lineage, audit logging
+- Enterprise controls: access control, audit logging
 - No training on customer data
 - GxP and 21 CFR Part 11 considerations for life sciences
 - Data residency: multi-cloud, region selection
@@ -83,7 +83,7 @@ Answer the specific question asked. If you're not certain about a detail, say so
 
 Generate a detailed ROI analysis and business case. Structure it as:
 
-## Business Case: Databricks for [Use Case] at [Account]
+## Business Case: Claude for [Use Case] at [Account]
 
 **Executive Summary:** 2-3 sentence overview of the opportunity
 
@@ -93,17 +93,17 @@ Generate a detailed ROI analysis and business case. Structure it as:
 - Pain points and inefficiencies
 
 **Proposed Solution:**
-- How Databricks addresses each pain point
-- Implementation approach (Lakehouse, Unity Catalog, Mosaic AI as relevant)
+- How Claude addresses each pain point
+- Implementation approach (Claude Enterprise deployment)
 - Timeline to value
 
 **Financial Impact:**
-| Metric | Current | With Databricks | Impact |
+| Metric | Current | With Claude | Impact |
 |--------|---------|-----------------|--------|
 | [specific metrics] | | | |
 
 **Year 1 ROI:**
-- Investment: Databricks platform costs
+- Investment: Claude platform costs
 - Savings: Productivity gains, cost reduction, faster time-to-market
 - Net ROI: X%
 
@@ -120,7 +120,7 @@ Generate a comprehensive executive narrative for this account. This should read 
 
 **The Opportunity:** Why this account, why now (2-3 sentences)
 **Strategic Context:** What's happening at the company that creates the opening
-**Why Databricks Wins Here:** Specific differentiators that matter for THIS life sciences account
+**Why Claude Wins Here:** Specific differentiators that matter for THIS life sciences account
 **Competitive Dynamics:** Who else is in play (Snowflake, Palantir, AWS, etc.) and how we're positioned
 **The Path:** Phase 1 (Land) → Phase 2 (Expand) → Phase 3 (Enterprise) with specifics
 **Value at Stake:** Land value, expansion potential, strategic importance
@@ -139,13 +139,13 @@ Generate a strategic assessment for this account. This should be a concise, acti
 3. **Biggest risk** and how to mitigate
 4. **Competitive threat level** and primary competitor to watch
 5. **Expansion opportunity** — the next department/use case to target (R&D, Clinical Ops, Regulatory, etc.)
-6. **Databricks recommended play** — the single most important thing to do next
+6. **Claude recommended play** — the single most important thing to do next
 
 Be direct and specific. Name names, suggest timelines, quantify impact.`,
 
   use_case_recommendation: `${BASE_SYSTEM_PROMPT}
 
-Based on the account profile, recommend the top Databricks use cases for life sciences. For each:
+Based on the account profile, recommend the top Claude use cases for life sciences. For each:
 
 **Use Case:** Name (e.g. clinical trial analytics, RWE platform, GxP MLOps, R&D data lake)
 **Department:** Where it lives (R&D, Clinical Ops, Regulatory, Medical Affairs, etc.)
@@ -163,10 +163,10 @@ Rank by a combination of business impact and likelihood of adoption for THIS spe
 
 Generate a targeted expansion pitch for a specific department within the account. Structure it as:
 
-## Expanding Databricks into [Department] at [Account]
+## Expanding Claude into [Department] at [Account]
 
 **The Hook:** Why this department should care (tied to their specific KPIs)
-**Use Cases:** 2-3 specific ways this department would use Databricks
+**Use Cases:** 2-3 specific ways this department would use Claude
 **Value Proposition:** Quantified impact on their metrics
 **Internal Champion:** Who to approach and how (ideally leveraging existing relationships)
 **Proof Points:** Evidence from the existing deployment or similar life sciences customers

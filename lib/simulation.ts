@@ -34,7 +34,7 @@ const EVENT_TEMPLATES: Record<string, EventTemplate[]> = {
   ],
   bms: [
     { type: "research_signal", agentName: "Research Agent", priority: "high", title: "Opportunity detected", explanation: "Clinical Dev Ops evaluating trial data platform. Snowflake comparison in parallel.", recommendedAction: "Engage Clinical Dev Ops", operationalPhrase: "opportunity detected in clinical ops" },
-    { type: "champion_identified", agentName: "Research Agent", priority: "high", title: "Champion identified", explanation: "VP Clinical Dev Ops interested in Databricks for trial analytics.", recommendedAction: "Win on architecture and time-to-value", operationalPhrase: "champion identified" },
+    { type: "champion_identified", agentName: "Research Agent", priority: "high", title: "Champion identified", explanation: "VP Clinical Dev Ops interested in Claude for document workflows.", recommendedAction: "Win on architecture and time-to-value", operationalPhrase: "champion identified" },
     { type: "competitor_detected", agentName: "Competitive Strategy Agent", priority: "high", title: "Competitive pressure elevated", explanation: "Snowflake evaluation for data warehouse. Need to land clinical analytics first.", recommendedAction: "Differentiate Lakehouse vs warehouse", operationalPhrase: "competitive pressure elevated" },
   ],
   pfizer: [

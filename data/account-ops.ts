@@ -139,7 +139,7 @@ function getRecentMoment(account: Account) {
   }
 
   if (account.id === "bms") {
-    return "Clinical Dev Ops is evaluating Snowflake. Need to land Databricks for trial analytics before that decision.";
+    return "Teams are evaluating AI tools. Need to land Claude with clear governance before broader rollouts.";
   }
 
   if (account.id === "sanofi") {
@@ -237,7 +237,7 @@ export function buildAccountSignals(
       confidence: 76,
       owner: secondSponsor.name,
       impact: "A stronger narrative shortens the gap between functional interest and sponsor-level commitment.",
-      recommendedAction: `Prepare a briefing for ${secondSponsor.name} that names why now, why Databricks, what the first proof point is, and what support is needed.`,
+      recommendedAction: `Prepare a briefing for ${secondSponsor.name} that names why now, why Claude, what the first proof point is, and what support is needed.`,
       sourceType: "crm",
       sourceLabel: "Executive account summary",
       sourceFreshness: "Working hypothesis",
@@ -319,7 +319,7 @@ export function buildStakeholders(account: Account): Stakeholder[] {
       influence: "high",
       relationshipStrength: 38,
       nextStep: "Bring a clean deployment narrative before asking for approval.",
-      note: "This stakeholder is not anti-Databricks; they are anti-ambiguity.",
+      note: "This stakeholder is not anti-Claude; they are anti-ambiguity.",
       lastTouch: "Security prep queue · Pending",
       proofNeeded: "Data flow, identity controls, retention posture, and a clearly bounded pilot scope.",
       recentMoment: "This workstream will likely determine the speed of the deal.",
@@ -380,7 +380,7 @@ export function buildExecutionItems(account: Account): ExecutionItem[] {
       owner: primarySponsor.name,
       status: "ready",
       dueLabel: "Before next sponsor sync",
-      detail: "Frame why now, why Databricks, what the first win is, and what support is needed to move.",
+      detail: "Frame why now, why Claude, what the first win is, and what support is needed to move.",
       decisionRequired: true,
       decisionStatus: "pending",
       checkpoint: "Executive sponsor has a usable internal brief",

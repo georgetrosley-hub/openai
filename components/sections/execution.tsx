@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Clock3, PauseCircle, PlayCircle, ShieldCheck } from "lucide-react";
-import { DatabricksActionBar } from "@/components/ui/databricks-action-bar";
+import { ClaudeActionBar } from "@/components/ui/claude-action-bar";
 import { SectionHeader } from "@/components/ui/section-header";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/app/context/toast-context";
@@ -77,8 +77,8 @@ export function Execution({
         subtitle="The sequence I would run: land the pilot, clear governance, tighten the executive story, start commercial work early, then expand."
       />
 
-      <DatabricksActionBar
-        title="Ask Databricks AI from inside the deal plan"
+      <ClaudeActionBar
+        title="Ask Claude from inside the deal plan"
         subtitle="Use AI for mutual action planning, pilot design, and unblockers while you are actively running the deal."
         account={account}
         competitors={competitors}

@@ -6,7 +6,7 @@ import { X, Send, Square, Trash2 } from "lucide-react";
 import { useApiKey } from "@/app/context/api-key-context";
 import { cn } from "@/lib/utils";
 import { readApiErrorMessage } from "@/lib/client/api";
-import { DatabricksLogoIcon } from "@/components/ui/databricks-logo";
+import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import type { Account, Competitor } from "@/types";
 
 interface Message {
@@ -127,7 +127,7 @@ export function ChatPanel({
             content:
               error instanceof Error
                 ? error.message
-                : "I couldn't process that request. Add your Databricks API key in the top right and try again.",
+                : "I couldn't process that request. Add your Claude API key in the top right and try again.",
           },
         ]);
       }
@@ -178,9 +178,9 @@ export function ChatPanel({
             {/* Header */}
             <div className="flex min-h-12 shrink-0 items-center justify-between border-b border-surface-border/40 px-4 py-3">
               <div className="flex min-w-0 items-center gap-2">
-                <DatabricksLogoIcon size={14} className="text-accent" />
+                <ClaudeSparkle size={14} className="text-accent" />
                 <span className="truncate text-[13px] font-medium text-text-primary">
-                  Databricks Deal Desk
+                  Claude Deal Desk
                 </span>
                 <span className="hidden rounded-full bg-surface-muted/60 px-2 py-0.5 text-[10px] text-text-muted sm:inline-flex">
                   {account.name}
@@ -214,7 +214,7 @@ export function ChatPanel({
             >
               {messages.length === 0 && !streamingContent && (
                 <div className="flex h-full flex-col items-center justify-center px-4 text-center sm:px-8">
-                  <DatabricksLogoIcon
+                  <ClaudeSparkle
                     size={24}
                     className="text-accent/30 mb-4"
                   />
@@ -226,7 +226,7 @@ export function ChatPanel({
                   </p>
                   {!hasApiKey && (
                     <div className="mb-6 rounded-lg border border-accent/20 bg-accent/[0.06] px-3 py-2 text-[11px] text-accent/85">
-                      If chat is not responding yet, add your Databricks API key from the top right.
+                      If chat is not responding yet, add your Claude API key from the top right.
                     </div>
                   )}
                   <p className="text-[10px] font-medium uppercase tracking-wider text-text-faint mb-2">
@@ -265,7 +265,7 @@ export function ChatPanel({
                 >
                   {msg.role === "assistant" && (
                     <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent/10">
-                      <DatabricksLogoIcon size={12} className="text-accent" />
+                      <ClaudeSparkle size={12} className="text-accent" />
                     </div>
                   )}
                   <div
@@ -286,7 +286,7 @@ export function ChatPanel({
               {isStreaming && streamingContent && (
                 <div className="flex gap-3 justify-start">
                   <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent/10">
-                    <DatabricksLogoIcon
+                    <ClaudeSparkle
                       size={12}
                       className="text-accent animate-pulse"
                     />
@@ -303,7 +303,7 @@ export function ChatPanel({
               {isStreaming && !streamingContent && (
                 <div className="flex gap-3 justify-start">
                   <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-accent/10">
-                    <DatabricksLogoIcon
+                    <ClaudeSparkle
                       size={12}
                       className="text-accent animate-pulse"
                     />

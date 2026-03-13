@@ -23,7 +23,7 @@ import type {
   WorkspaceDraft,
 } from "@/types";
 
-const WORKSPACE_STORAGE_KEY = "databricks-life-sciences-gtm-state";
+const WORKSPACE_STORAGE_KEY = "claude-enterprise-war-room-state";
 
 interface AppState {
   accountId: string;
