@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   title: "Claude Enterprise GTM",
   description: "How I'd build pipeline and expansion for Claude Enterprise.",
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23FF3621' d='M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z'/></svg>",
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path fill='%23DA7756' d='M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z'/></svg>",
   },
 };
 
