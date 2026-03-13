@@ -6,12 +6,15 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { ClaudeActionBar } from "@/components/ui/claude-action-bar";
 import { getFlagshipDealContext } from "@/data/flagship-deals";
 import { useToast } from "@/app/context/toast-context";
-import type { Account, AccountUpdate, Competitor, WorkspaceDraft } from "@/types";
+import { getPlansForThisWeek } from "@/lib/plans-for-week";
+import type { Account, AccountUpdate, Competitor, ExecutionItem, WorkspaceDraft } from "@/types";
 
 interface DealProgressionProps {
   account: Account;
   competitors: Competitor[];
   workspaceDraft: WorkspaceDraft;
+  accountUpdates: AccountUpdate[];
+  executionItems: ExecutionItem[];
   onUpdateWorkspaceField: (field: keyof WorkspaceDraft, value: string) => void;
   onAddAccountUpdate: (
     title: string,
@@ -24,12 +27,15 @@ export function DealProgression({
   account,
   competitors,
   workspaceDraft,
+  accountUpdates,
+  executionItems,
   onUpdateWorkspaceField,
   onAddAccountUpdate,
 }: DealProgressionProps) {
   const saveToastRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { showToast } = useToast();
   const flagshipDeal = getFlagshipDealContext(account.id);
+  const plansForThisWeek = getPlansForThisWeek(accountUpdates, executionItems);
 
   const handleWorkspaceFieldChange = useCallback(
     (field: keyof WorkspaceDraft, value: string) => {
@@ -159,16 +165,15 @@ export function DealProgression({
             </div>
 
             <div>
-              <label className="mb-2 block text-[11px] font-medium uppercase tracking-[0.12em] text-claude-coral">
+              <label className="mb-2 block text-[11px] font-medium uppercase tracking-[0.12em] text-text-faint">
                 Plans for this week
               </label>
-              <textarea
-                value={workspaceDraft.thisWeekFocus}
-                onChange={(event) => handleWorkspaceFieldChange("thisWeekFocus", event.target.value)}
-                rows={2}
-                placeholder="e.g. Lock the pilot sponsor, define success criteria, schedule governance…"
-                className="w-full resize-none rounded-[22px] border border-claude-coral/25 bg-surface-muted/20 px-4 py-3 text-[13px] font-normal leading-relaxed text-text-muted placeholder:text-text-faint/60 focus:border-claude-coral/40 focus:outline-none focus:text-text-primary focus:placeholder:opacity-0"
-              />
+              <p className="rounded-[22px] border border-claude-coral/20 bg-white/[0.02] px-4 py-3 text-[13px] leading-relaxed text-text-secondary whitespace-pre-wrap">
+                {plansForThisWeek}
+              </p>
+              <p className="mt-1.5 text-[11px] text-text-faint">
+                Generated from last week&apos;s notes and where things need to progress.
+              </p>
             </div>
 
             <div>
@@ -234,7 +239,7 @@ export function DealProgression({
             {
               id: "weekly-attack-plan",
               label: "Build weekly attack plan",
-              prompt: `Turn my current weekly focus into a practical attack plan for ${account.name}. Weekly focus: ${workspaceDraft.thisWeekFocus}. I want owners, sequence, and suggested messaging.`,
+              prompt: `Turn this week's priorities into a practical attack plan for ${account.name}. Plans for this week (from notes and progress):\n\n${plansForThisWeek}\n\nI want owners, sequence, and suggested messaging.`,
             },
           ]}
         />

@@ -9,6 +9,7 @@ import { MetricCard } from "@/components/ui/metric-card";
 import { ClaudeSparkle } from "@/components/ui/claude-logo";
 import { useToast } from "@/app/context/toast-context";
 import { isStale } from "@/lib/deal-health";
+import { getPlansForThisWeek } from "@/lib/plans-for-week";
 import type {
   Account,
   AccountSignal,
@@ -87,6 +88,10 @@ export function Overview({
   const todayLabel = useMemo(() => getTodayLabel(), []);
   const topPriority = executionItems.find((i) => i.status === "blocked") ?? executionItems.find((i) => i.status === "in_progress");
   const lastUpdate = accountUpdates[0];
+  const plansForThisWeek = useMemo(
+    () => getPlansForThisWeek(accountUpdates, executionItems),
+    [accountUpdates, executionItems]
+  );
 
   const blockedItems = executionItems.filter((i) => i.status === "blocked");
   const needsAttention = executionItems.filter(
@@ -164,18 +169,17 @@ export function Overview({
         </div>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          <div className="flex flex-col rounded-xl border border-claude-coral/25 bg-surface-muted/50 px-4 py-3.5">
+          <div className="flex flex-col rounded-xl border border-claude-coral/20 bg-surface-muted/50 px-4 py-3.5">
             <div className="flex items-center gap-2">
               <Zap className="h-4 w-4 text-claude-coral" strokeWidth={2} />
               <p className="text-[11px] font-bold uppercase tracking-wider text-claude-coral">Plans for this week</p>
             </div>
-            <textarea
-              value={workspaceDraft.thisWeekFocus}
-              onChange={(e) => handleWorkspaceFieldChange("thisWeekFocus", e.target.value)}
-              placeholder="e.g. Lock the pilot sponsor, define success criteria, schedule governance…"
-              rows={2}
-              className="mt-2.5 w-full resize-none border-none bg-transparent p-0 text-[14px] font-normal leading-relaxed text-text-muted placeholder:text-text-faint/60 focus:outline-none focus:ring-0 focus:text-text-primary focus:placeholder:opacity-0"
-            />
+            <p className="mt-2.5 whitespace-pre-wrap text-[13px] leading-relaxed text-text-secondary">
+              {plansForThisWeek}
+            </p>
+            <p className="mt-1.5 text-[11px] text-text-faint">
+              From last week&apos;s notes and progress
+            </p>
           </div>
           <button
             type="button"

@@ -87,6 +87,8 @@ function MainContent() {
         account={account}
         competitors={competitors}
         workspaceDraft={workspaceDraft}
+        accountUpdates={accountUpdates}
+        executionItems={executionItems}
         onUpdateWorkspaceField={updateWorkspaceField}
         onAddAccountUpdate={addAccountUpdate}
       />
