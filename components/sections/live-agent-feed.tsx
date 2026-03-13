@@ -65,7 +65,7 @@ export function LiveAgentFeed({ events, account, competitors }: LiveAgentFeedPro
         explanation: data.explanation ?? "Agent analysis completed.",
         recommendedAction: data.recommendedAction,
       };
-      setAiEvents((prev) => [newEvent, ...prev].slice(0, 20));
+      setAiEvents((prev): SimulationEvent[] => [newEvent, ...prev].slice(0, 20));
     } catch (error) {
       const message =
         error instanceof Error
@@ -82,7 +82,7 @@ export function LiveAgentFeed({ events, account, competitors }: LiveAgentFeedPro
         recommendedAction: "Update your Claude API key from the top right, then retry.",
       };
 
-      setAiEvents((prev) => [
+      setAiEvents((prev): SimulationEvent[] => [
         errorEvent,
         ...prev,
       ].slice(0, 20));
