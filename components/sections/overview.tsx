@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
-import { AlertTriangle, ArrowRight, BriefcaseBusiness, Crosshair, Users, Eye, CircleDot } from "lucide-react";
+import { AlertTriangle, ArrowRight, BriefcaseBusiness, Crosshair, Users, Eye, CircleDot, Zap, Target } from "lucide-react";
 import { ClaudeActionBar } from "@/components/ui/claude-action-bar";
 import { SectionHeader } from "@/components/ui/section-header";
 import { MetricCard } from "@/components/ui/metric-card";
@@ -163,10 +163,10 @@ export function Overview({
       </section>
 
       {/* Today's workspace — compact status strip */}
-      <section className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 sm:p-6">
+      <section className="rounded-2xl border border-surface-border bg-surface-elevated p-5 sm:p-6 shadow-elevated">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-[11px] font-medium uppercase tracking-wider text-text-faint">
+            <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
               {todayLabel} · {account.name}
             </p>
             <h1 className="mt-0.5 text-lg font-semibold tracking-tight text-text-primary sm:text-xl">
@@ -175,27 +175,36 @@ export function Overview({
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-stretch sm:gap-6">
-          <div className="min-w-0 flex-1 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
-            <p className="text-[10px] font-medium uppercase tracking-wider text-text-faint">This week</p>
+        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          <div className="flex flex-col rounded-xl border border-surface-border bg-surface-muted px-4 py-3.5 shadow-elevated">
+            <div className="flex items-center gap-2">
+              <Zap className="h-3.5 w-3.5 text-accent" strokeWidth={2} />
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">This week</p>
+            </div>
             <textarea
               value={workspaceDraft.thisWeekFocus}
               onChange={(e) => handleWorkspaceFieldChange("thisWeekFocus", e.target.value)}
               placeholder="Lock the pilot sponsor, define success criteria, and schedule the governance workstream."
               rows={2}
-              className="mt-2 w-full resize-none border-none bg-transparent p-0 text-[14px] leading-relaxed text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:ring-0"
+              className="mt-2.5 w-full resize-none border-none bg-transparent p-0 text-[14px] font-medium leading-relaxed text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-0"
             />
           </div>
-          <div className="flex shrink-0 flex-col justify-center border-t border-white/[0.06] pt-4 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
-            <p className="text-[10px] font-medium uppercase tracking-wider text-text-faint">Where I left off</p>
-            <p className="mt-1.5 text-[14px] font-medium text-text-primary">
+          <div className="flex flex-col justify-center rounded-xl border border-surface-border bg-surface-muted px-4 py-3.5 shadow-elevated">
+            <div className="flex items-center gap-2">
+              <ArrowRight className="h-3.5 w-3.5 text-accent" strokeWidth={2} />
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">Where I left off</p>
+            </div>
+            <p className="mt-2 text-[14px] font-semibold text-text-primary">
               {lastUpdate?.title ?? "Daily account reset"}
             </p>
             <p className="mt-0.5 text-[12px] text-text-muted">{lastUpdate?.createdAt ?? "Today"}</p>
           </div>
-          <div className="flex shrink-0 flex-col justify-center border-t border-white/[0.06] pt-4 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
-            <p className="text-[10px] font-medium uppercase tracking-wider text-text-faint">Today&apos;s priority</p>
-            <p className="mt-1.5 text-[14px] font-medium text-text-primary">
+          <div className="flex flex-col justify-center rounded-xl border border-surface-border bg-surface-muted px-4 py-3.5 shadow-elevated">
+            <div className="flex items-center gap-2">
+              <Target className="h-3.5 w-3.5 text-accent" strokeWidth={2} />
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">Today&apos;s priority</p>
+            </div>
+            <p className="mt-2 text-[14px] font-semibold text-text-primary">
               {topPriority?.title ?? "Define the first pilot"}
             </p>
             <p className="mt-0.5 text-[12px] text-text-muted">
