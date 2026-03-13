@@ -132,7 +132,7 @@ export function Execution({
             {pendingDecisions.map((item) => (
               <div
                 key={item.id}
-                className="rounded-[24px] border border-white/8 bg-black/10 px-4 py-4"
+                className="rounded-[24px] border border-white/8 bg-white/[0.03] px-4 py-4"
               >
                 <p className="text-[14px] font-medium text-text-primary">{item.title}</p>
                 <p className="mt-2 text-[12px] text-text-muted">
@@ -141,9 +141,9 @@ export function Execution({
                 <p className="mt-3 text-[13px] leading-relaxed text-text-secondary">
                   {item.detail}
                 </p>
-                <div className="mt-4 rounded-[20px] border border-white/8 bg-black/10 px-4 py-4">
+                <div className="mt-4">
                   <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Checkpoint</p>
-                  <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+                  <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
                     {item.checkpoint}
                   </p>
                 </div>
@@ -200,16 +200,16 @@ export function Execution({
             <p className="mt-4 text-[13px] leading-relaxed text-text-secondary">
               {item.detail}
             </p>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[20px] border border-white/8 bg-black/10 px-4 py-4">
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
                 <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Checkpoint</p>
-                <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
+                <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
                   {item.checkpoint}
                 </p>
               </div>
-              <div className="rounded-[20px] border border-white/8 bg-black/10 px-4 py-4">
+              <div>
                 <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Last updated</p>
-                <div className="mt-2 flex items-center gap-2">
+                <div className="mt-1 flex items-center gap-2">
                   <p className="text-[13px] leading-relaxed text-text-secondary">
                     {item.lastUpdated}
                   </p>

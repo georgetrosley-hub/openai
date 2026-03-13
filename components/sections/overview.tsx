@@ -274,8 +274,8 @@ export function Overview({
             title="How I&apos;d run this account"
             subtitle="The capture-plan view: how I&apos;d create urgency, who I&apos;d build with, what pilot I&apos;d land, and how I&apos;d expand."
           />
-          <div className="grid gap-4 xl:grid-cols-2">
-            <div className="rounded-[22px] border border-white/8 bg-black/10 px-4 py-4">
+          <div className="grid gap-6 xl:grid-cols-2">
+            <div>
               <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Land motion</p>
               <p className="mt-3 text-[15px] font-medium text-text-primary">{account.firstWedge}</p>
               <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
@@ -284,7 +284,7 @@ export function Overview({
               </p>
             </div>
 
-            <div className="rounded-[22px] border border-white/8 bg-black/10 px-4 py-4">
+            <div>
               <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Champion building</p>
               <p className="mt-3 text-[15px] font-medium text-text-primary">
                 {champion?.title ?? "Likely functional champion"}
@@ -294,7 +294,7 @@ export function Overview({
               </p>
             </div>
 
-            <div className="rounded-[22px] border border-white/8 bg-black/10 px-4 py-4">
+            <div>
               <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Pilot strategy</p>
               <p className="mt-3 text-[15px] font-medium text-text-primary">
                 {firstDecision?.title ?? "Define the first pilot"}
@@ -304,7 +304,7 @@ export function Overview({
               </p>
             </div>
 
-            <div className="rounded-[22px] border border-white/8 bg-black/10 px-4 py-4">
+            <div>
               <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Expansion path</p>
               <p className="mt-3 text-[15px] font-medium text-text-primary">
                 {expansionItem?.title ?? account.topExpansionPaths[0]}
@@ -359,8 +359,8 @@ export function Overview({
             subtitle={`Named champion, pilot criteria, and competitive battle for ${account.name}.`}
           />
           <div className="mt-6 grid gap-6 xl:grid-cols-3">
-            <div className="xl:col-span-2 space-y-6">
-              <div className="rounded-[22px] border border-white/8 bg-black/10 px-4 py-4">
+                <div className="xl:col-span-2 space-y-6">
+              <div>
                 <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Champion</p>
                 <p className="mt-2 text-[15px] font-medium text-text-primary">
                   {flagshipDeal.championName} · {flagshipDeal.championTitle}
@@ -371,7 +371,7 @@ export function Overview({
                   </p>
                 )}
               </div>
-              <div className="rounded-[22px] border border-white/8 bg-black/10 px-4 py-4">
+              <div>
                 <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Pilot criteria</p>
                 <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">
                   {flagshipDeal.pilotCriteria.scope}
@@ -385,7 +385,7 @@ export function Overview({
                   {flagshipDeal.pilotCriteria.timeline} · Owner: {flagshipDeal.pilotCriteria.owner}
                 </p>
               </div>
-              <div className="rounded-[22px] border border-white/8 bg-black/10 px-4 py-4">
+              <div>
                 <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Competitive battle</p>
                 <p className="mt-2 text-[13px] font-medium text-text-primary">
                   Incumbent: {flagshipDeal.competitiveBattle.incumbent}
@@ -398,7 +398,7 @@ export function Overview({
                 </p>
               </div>
             </div>
-            <div className="rounded-[22px] border border-white/8 bg-black/10 px-4 py-4">
+            <div className="rounded-[22px] border border-white/8 bg-white/[0.02] px-4 py-4">
               <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Deal milestones</p>
               <div className="mt-4 space-y-3">
                 {flagshipDeal.milestones.map((m, i) => (

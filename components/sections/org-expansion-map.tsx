@@ -355,7 +355,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
               {account.topExpansionPaths.slice(0, 3).map((path, index) => (
                 <div
                   key={path}
-                  className="rounded-[20px] border border-white/8 bg-black/10 px-4 py-3"
+                  className="px-1 py-1"
                 >
                   <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.08em] text-text-faint">
                     <span>Path {index + 1}</span>
@@ -375,7 +375,7 @@ export function OrgExpansionMap({ nodes, account, competitors }: OrgExpansionMap
               {rankedNodes.slice(0, 3).map((node, index) => (
                 <div
                   key={node.id}
-                  className="flex flex-col gap-3 rounded-[20px] border border-white/8 bg-black/10 px-4 py-3 sm:flex-row sm:items-center"
+                  className="flex flex-col gap-3 rounded-[20px] border border-white/8 bg-white/[0.03] px-4 py-3 sm:flex-row sm:items-center"
                 >
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/[0.04] text-[11px] font-semibold text-text-secondary">
                     {index + 1}

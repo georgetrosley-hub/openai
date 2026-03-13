@@ -140,7 +140,7 @@ export function Signals({
                 </div>
                 <p className="mt-3 text-[16px] font-medium text-text-primary">{signal.title}</p>
               </div>
-              <div className="rounded-[20px] border border-white/8 bg-black/10 px-4 py-3 text-right">
+              <div className="px-1 py-1 text-right">
                 <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Confidence</p>
                 <p className="mt-2 text-[16px] font-medium text-text-primary">{signal.confidence}%</p>
               </div>
@@ -155,11 +155,11 @@ export function Signals({
                   {signal.recommendedAction}
                 </p>
               </div>
-              <div className="rounded-[20px] border border-white/8 bg-black/10 px-4 py-4">
+              <div>
                 <p className="text-[10px] uppercase tracking-[0.12em] text-text-faint">Owner</p>
-                <p className="mt-2 text-[13px] font-medium text-text-primary">{signal.owner}</p>
+                <p className="mt-1 text-[13px] font-medium text-text-primary">{signal.owner}</p>
                 <p className="mt-4 text-[10px] uppercase tracking-[0.12em] text-text-faint">Impact</p>
-                <p className="mt-2 text-[13px] leading-relaxed text-text-secondary">{signal.impact}</p>
+                <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">{signal.impact}</p>
               </div>
             </div>
             <div className="mt-4 flex flex-wrap gap-2">
